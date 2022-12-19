@@ -30,6 +30,8 @@ locals {
   pg_sku_name                = "GP_Gen5_4"
   pg_ssl_enforcement_enabled = true
 
+  cv_sku_name                = "S1"
+
 }
 
 data "azurerm_client_config" "current" {}
@@ -131,6 +133,20 @@ module "storage_blob" {
   create_resource_group = false
   resource_group_name   = azurerm_resource_group.rg.name
   location              = azurerm_resource_group.rg.location
+
+  depends_on = [
+    azurerm_resource_group.rg
+  ]
+}
+
+module "computervision" {
+  source = "../cv/module"
+
+  name                  = join("", ["cv", var.prefix, random_string.unique.result])
+  create_resource_group = false
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  sku_name              = local.cv_sku_name
 
   depends_on = [
     azurerm_resource_group.rg
