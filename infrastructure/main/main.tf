@@ -30,7 +30,7 @@ locals {
   pg_sku_name                = "GP_Gen5_4"
   pg_ssl_enforcement_enabled = true
 
-  cv_sku_name                = "S1"
+  cv_sku_name = "S1"
 
 }
 
