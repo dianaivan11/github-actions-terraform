@@ -15,15 +15,13 @@ on:
       - ready_for_review
       
   issue_comment:
-    branches:
-      - main
       
 
 jobs:
   pr_commented:
     # This job does not run if PR is in draft or if the comment was on an issue
     name: PR comment
-    if: ${{ github.event.issue.pull_request && github.event.pull_request.draft == 'false'}}
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     
     steps:
