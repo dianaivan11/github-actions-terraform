@@ -1,0 +1,31 @@
+
+# This is a GitHub workflow that checks Pull Request is linked to Azure Boards work item.
+name: PR Policy Checks - Azure Boards
+
+# Controls when the action will run. 
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened 
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      
+  issue_comment:
+    branches:
+      - main
+      
+
+jobs:
+  pr_commented:
+    # This job does not run if PR is in draft or if the comment was on an issue
+    name: PR comment
+    if: ${{ github.event.issue.pull_request && github.event.pull_request.draft == 'false'}}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: |
+          echo A comment on PR or NEW PR
