@@ -5,6 +5,8 @@ name: PR Policy Checks - Azure Boards
 # Controls when the action will run. 
 on:   
   issue_comment:
+    branches:
+      - main
 
 jobs:
   pr_commented:
