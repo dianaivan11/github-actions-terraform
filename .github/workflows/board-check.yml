@@ -3,19 +3,8 @@
 name: PR Policy Checks - Azure Boards
 
 # Controls when the action will run. 
-on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened 
-      - synchronize
-      - reopened
-      - edited
-      - ready_for_review
-      
+on:   
   issue_comment:
-      
 
 jobs:
   pr_commented:
