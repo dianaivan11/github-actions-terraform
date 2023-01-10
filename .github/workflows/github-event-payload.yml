@@ -15,5 +15,6 @@ jobs:
     - name: Printing through env var works now
       run: |
         echo $EVENT_PATH
+        echo ${{ github.event_path }}
       env:
         EVENT_PATH: ${{ github.event_path }}
