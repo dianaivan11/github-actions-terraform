@@ -1,0 +1,19 @@
+name: event_path (manual trigger)
+on:
+  push:
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    steps:
+    # Step 1 Broken
+    - name: Printing through env var does not
+      run: |
+        echo $EVENT_PATH
+      env:
+        EVENT_PATH: ${{ github.event_path }}
+    # Step 2 Working
+    - name: Printing through env var works now
+      run: |
+        echo $EVENT_PATH
+      env:
+        EVENT_PATH: ${{ github.event_path }}
