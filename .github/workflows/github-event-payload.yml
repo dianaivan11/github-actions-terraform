@@ -15,6 +15,7 @@ jobs:
     - name: Printing through env var works now
       run: |
         echo $EVENT_PATH
-        echo ${{ github.event_path }}
+        $github = Get-Content '${{ github.event_path }}' | ConvertFrom-Json
+        echo $github
       env:
         EVENT_PATH: ${{ github.event_path }}
